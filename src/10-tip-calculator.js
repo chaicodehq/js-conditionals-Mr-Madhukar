@@ -1,4 +1,4 @@
-/**
+ /**
  * 🍽️ TipEasy - Restaurant Tip Calculator
  *
  * You're building TipEasy, an app that helps diners calculate the right
@@ -31,4 +31,17 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+  if (billAmount <= 0 || !Number.isInteger(serviceRating) || serviceRating < 1 || serviceRating > 5) {
+    return null;
+  }
+
+  const tipPercentages = [0, 5, 10, 15, 20, 25];
+  const tipPercentage = tipPercentages[serviceRating];
+  const tipAmount = parseFloat((billAmount * (tipPercentage / 100)).toFixed(2));
+  const totalAmount = parseFloat((billAmount + tipAmount).toFixed(2));
+  return {
+    tipPercentage,
+    tipAmount,
+    totalAmount
+  };
 }
