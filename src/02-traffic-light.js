@@ -22,5 +22,30 @@
  * @returns {string} The driving action to take
  */
 export function getTrafficAction(color) {
-  // Your code here
+  
+  // 1. Rule: Case-insensitive (e.g., "GREEN" -> "green")
+  // We convert to string just in case, then lower case it.
+  const sig = String(color).toLowerCase();
+
+  switch (sig) {
+    // 2. Signal: "green" -> Action: "GO"
+    case 'green':
+      return 'GO';
+
+    // 3. Signal: "yellow" -> Action: "SLOW DOWN"
+    case 'yellow':
+      return 'SLOW DOWN';
+
+    // 4. Signal: "red" -> Action: "STOP"
+    case 'red':
+      return 'STOP';
+
+    // 5. Signal: "flashing red" -> Action: "STOP AND PROCEED WITH CAUTION"
+    case 'flashing red':
+      return 'STOP AND PROCEED WITH CAUTION';
+
+    // 6. Signal: Anything else -> Action: "INVALID SIGNAL"
+    default:
+      return 'INVALID SIGNAL';
+  }
 }
